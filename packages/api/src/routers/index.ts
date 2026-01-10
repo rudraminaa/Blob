@@ -139,7 +139,6 @@ export const appRouter = router({
     return { user };
   }),
 
-  // Get all topics for the authenticated user
   getTopics: secureProcedure.query(async ({ ctx }) => {
     const topicsList = await ctx.db
       .select()
@@ -149,7 +148,6 @@ export const appRouter = router({
     return { topics: topicsList };
   }),
 
-  // Get a single topic by ID (only if owned by the user)
   getTopic: secureProcedure
     .input(z.object({ topicId: z.string().uuid() }))
     .query(async ({ input, ctx }) => {
